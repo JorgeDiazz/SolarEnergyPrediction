@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:solar_energy_prediction/core/config/l10n/l10n.dart';
 import 'package:solar_energy_prediction/core/router/app_router.dart';
+import 'package:solar_energy_prediction/core/service_locator/service_locator.dart';
 import 'package:solar_energy_prediction/core/theme/app_theme.dart';
 
 Future<void> main() async {
+  await initServiceLocator();
+
   runApp(const SolarEnergyPredictionApp());
 }
 

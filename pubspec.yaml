@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.2
+  dartz: 0.10.1
   dio: 5.4.0
   flutter:
     sdk: flutter
@@ -37,6 +38,7 @@ dependencies:
   golden_toolkit: 0.15.0
   intl: 0.18.1
   json_annotation: 4.8.1
+  location: 5.0.3
   mockito: 5.4.3
   provider: 6.1.1
 
