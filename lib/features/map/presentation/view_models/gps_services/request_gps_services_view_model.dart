@@ -5,7 +5,8 @@ import 'package:solar_energy_prediction/core/notifier_helpers/snackbar_status_no
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/utils/permissions_manager.dart';
 
-class RequestGpsServicesViewModel extends ChangeNotifier with SnackbarStatusMixin {
+class RequestGpsServicesViewModel extends ChangeNotifier
+    with SnackbarStatusMixin {
   final Location _location;
   Location get location => _location;
 
@@ -46,8 +47,10 @@ class RequestGpsServicesViewModel extends ChangeNotifier with SnackbarStatusMixi
       }
     }
 
-    final locationPermissionGranted = await PermissionsManager.requestLocationPermission(_location);
-    _gpsServiceEnabledAndGranted = gpsServiceEnabled && locationPermissionGranted;
+    final locationPermissionGranted =
+        await PermissionsManager.requestLocationPermission(_location);
+    _gpsServiceEnabledAndGranted =
+        gpsServiceEnabled && locationPermissionGranted;
 
     notifyListeners();
   }

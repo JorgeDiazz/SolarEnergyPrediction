@@ -15,7 +15,8 @@ class LocationRepositoryImpl implements LocationRepository {
       final gpsServiceEnabled = await location.serviceEnabled();
       return Right(gpsServiceEnabled);
     } catch (e) {
-      return Left(ServicesFailure(message: 'Error when checking if GPS service is enabled'));
+      return Left(ServicesFailure(
+          message: 'Error when checking if GPS service is enabled'));
     }
   }
 
@@ -25,7 +26,8 @@ class LocationRepositoryImpl implements LocationRepository {
       final gpsServiceEnabled = await location.requestService();
       return Right(gpsServiceEnabled);
     } catch (e) {
-      return Left(ServicesFailure(message: 'Error when requesting GPS service'));
+      return Left(
+          ServicesFailure(message: 'Error when requesting GPS service'));
     }
   }
 }

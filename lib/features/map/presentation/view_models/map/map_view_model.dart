@@ -17,6 +17,10 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   LatLng get lastKnownLocation => _lastKnownLocation;
 
+  LatLng _selectedLocation;
+
+  LatLng get selectedLocation => _selectedLocation;
+
   GoogleMapController? _mapController;
 
   GoogleMapController? get mapController => _mapController;
@@ -24,11 +28,13 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
   MapViewModel({
     required Location location,
   })  : _location = location,
-        _lastKnownLocation = const LatLng(0, 0);
+        _lastKnownLocation = const LatLng(0, 0),
+        _selectedLocation = const LatLng(0, 0);
 
   Future<void> updateLastKnownLocation() async {
     final currentLocation = await location.getLocation();
-    _lastKnownLocation = LatLng(currentLocation.latitude ?? 0, currentLocation.longitude ?? 0);
+    _lastKnownLocation =
+        LatLng(currentLocation.latitude ?? 0, currentLocation.longitude ?? 0);
     notifyListeners();
   }
 
@@ -41,8 +47,22 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
     if (_lastKnownLocation.isDefaultPoint()) {
       snackBarStatus.postError(S.current.user_location_is_unknown_text);
     } else {
-      final cameraUpdate = CameraUpdate.newLatLng(_lastKnownLocation);
-      _mapController?.animateCamera(cameraUpdate);
+      locatePointOnMap(_lastKnownLocation);
     }
+  }
+
+  void locatePointOnMap(LatLng location) {
+    final cameraUpdate = CameraUpdate.newLatLng(location);
+    _mapController?.animateCamera(cameraUpdate);
+  }
+
+  void updateSelectedLocation(LatLng selectedLocation) {
+    _selectedLocation = selectedLocation;
+    notifyListeners();
+  }
+
+  void clearSelectedLocation() {
+    _selectedLocation = const LatLng(0, 0);
+    notifyListeners();
   }
 }

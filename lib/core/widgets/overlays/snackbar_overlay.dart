@@ -42,8 +42,9 @@ class SnackbarOverlay extends StatelessWidget {
         content: Text(
           message.message,
         ),
-        backgroundColor:
-            message.type == SnackbarMessageType.error ? AppColors.pinkSalmon : AppColors.grayEmperor,
+        backgroundColor: message.type == SnackbarMessageType.error
+            ? AppColors.pinkSalmon
+            : AppColors.grayEmperor,
       );
 
       ScaffoldMessenger.of(context)

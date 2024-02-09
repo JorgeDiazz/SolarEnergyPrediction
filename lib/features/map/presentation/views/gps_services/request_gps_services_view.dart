@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solar_energy_prediction/core/config/l10n/l10n.dart';
-import 'package:solar_energy_prediction/features/map/presentation/view_models/request_gps_services_view_model.dart';
+import 'package:solar_energy_prediction/features/map/presentation/view_models/gps_services/request_gps_services_view_model.dart';
 
 class RequestGpsServicesView extends StatelessWidget {
   const RequestGpsServicesView({super.key});
