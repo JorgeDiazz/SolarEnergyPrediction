@@ -5,7 +5,7 @@ import 'package:solar_energy_prediction/core/notifier_helpers/snackbar_status_no
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/utils/permissions_manager.dart';
 
-class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
+class RequestGpsServicesViewModel extends ChangeNotifier with SnackbarStatusMixin {
   final Location _location;
   Location get location => _location;
 
@@ -15,7 +15,7 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
   final FutureUseCase<bool, void> _isGpsServiceEnabledUseCase;
   final FutureUseCase<bool, void> _requestGpsServiceUseCase;
 
-  MapViewModel({
+  RequestGpsServicesViewModel({
     required Location location,
     required FutureUseCase<bool, void> isGpsServiceEnabledUseCase,
     required FutureUseCase<bool, void> requestGpsServiceUseCase,
@@ -24,11 +24,7 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
         _isGpsServiceEnabledUseCase = isGpsServiceEnabledUseCase,
         _requestGpsServiceUseCase = requestGpsServiceUseCase;
 
-  Future<void> init() async {
-    await _checkGpsStatus();
-  }
-
-  Future<void> _checkGpsStatus() async {
+  Future<void> checkGpsStatus() async {
     final isGpsServiceEnabledResult = await _isGpsServiceEnabledUseCase(null);
 
     isGpsServiceEnabledResult.fold((failure) {
@@ -45,6 +41,8 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
       if (requestGpsServiceResult.isLeft()) {
         final failure = requestGpsServiceResult.asLeft();
         snackBarStatus.postError(failure.toString());
+      } else {
+        gpsServiceEnabled = requestGpsServiceResult.asRight();
       }
     }
 

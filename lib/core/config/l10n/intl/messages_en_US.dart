@@ -23,6 +23,11 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name":
-            MessageLookupByLibrary.simpleMessage("Solar Energy Prediction")
+            MessageLookupByLibrary.simpleMessage("Solar Energy Prediction"),
+        "app_requires_location_services_and_permission_title":
+            MessageLookupByLibrary.simpleMessage(
+                "This app requires GPS enabled and location permission granted"),
+        "request_gps_services_button":
+            MessageLookupByLibrary.simpleMessage("Request GPS services")
       };
 }

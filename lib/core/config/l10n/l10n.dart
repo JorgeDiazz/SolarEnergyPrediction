@@ -59,6 +59,26 @@ class S {
       args: [],
     );
   }
+
+  /// `This app requires GPS enabled and location permission granted`
+  String get app_requires_location_services_and_permission_title {
+    return Intl.message(
+      'This app requires GPS enabled and location permission granted',
+      name: 'app_requires_location_services_and_permission_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request GPS services`
+  String get request_gps_services_button {
+    return Intl.message(
+      'Request GPS services',
+      name: 'request_gps_services_button',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
