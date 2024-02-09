@@ -8,6 +8,10 @@
         android:label="solar_energy_prediction"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCRMiXi_Z1VkKKK76jPVHkH1mnKx1F3oxg"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

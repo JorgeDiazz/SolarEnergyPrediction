@@ -79,6 +79,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Locating user on map...`
+  String get locating_user_on_map_text {
+    return Intl.message(
+      'Locating user on map...',
+      name: 'locating_user_on_map_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User location is unknown!`
+  String get user_location_is_unknown_text {
+    return Intl.message(
+      'User location is unknown!',
+      name: 'user_location_is_unknown_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

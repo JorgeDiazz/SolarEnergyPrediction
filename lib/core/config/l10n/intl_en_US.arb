@@ -1,9 +1,9 @@
 {
   "@@locale": "en_US",
-
   "app_name": "Solar Energy Prediction",
 
   "app_requires_location_services_and_permission_title": "This app requires GPS enabled and location permission granted",
-  "request_gps_services_button": "Request GPS services"
-
+  "request_gps_services_button": "Request GPS services",
+  "locating_user_on_map_text": "Locating user on map...",
+  "user_location_is_unknown_text": "User location is unknown!"
 }
