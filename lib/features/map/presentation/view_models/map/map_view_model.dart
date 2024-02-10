@@ -9,6 +9,7 @@ import 'package:solar_energy_prediction/core/notifier_helpers/snackbar_status_no
 import 'package:solar_energy_prediction/core/theme/map_theme.dart';
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
+import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 
 class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
   final Location _location;
@@ -31,13 +32,21 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   WeatherData? get mapLocationData => _mapLocationData;
 
-  final FutureUseCase<WeatherData, LatLng> _getMapLocationDataUseCase;
+  WeatherForecast? _weatherForecast;
+
+  WeatherForecast? get weatherForecast => _weatherForecast;
+
+  final FutureUseCase<WeatherData, LatLng> _getWeatherDataUseCase;
+  final FutureUseCase<WeatherForecast, LatLng> _getWeather5DaysForecastUseCase;
 
   MapViewModel({
     required Location location,
-    required FutureUseCase<WeatherData, LatLng> getMapLocationDataUseCase,
+    required FutureUseCase<WeatherData, LatLng> getWeatherDataUseCase,
+    required FutureUseCase<WeatherForecast, LatLng>
+        getWeather5DaysForecastUseCase,
   })  : _location = location,
-        _getMapLocationDataUseCase = getMapLocationDataUseCase,
+        _getWeatherDataUseCase = getWeatherDataUseCase,
+        _getWeather5DaysForecastUseCase = getWeather5DaysForecastUseCase,
         _lastKnownLocation = const LatLng(0, 0),
         _selectedLocation = const LatLng(0, 0);
 
@@ -74,18 +83,37 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
   void clearSelectedLocation() {
     _selectedLocation = const LatLng(0, 0);
     _mapLocationData = null;
+    _weatherForecast = null;
     notifyListeners();
   }
 
   Future<void> updateMapLocationData(LatLng currentLocation) async {
-    final mapLocationDataResult =
-        await _getMapLocationDataUseCase(currentLocation);
+    final weatherDataResult = await _getWeatherDataUseCase(currentLocation);
 
-    mapLocationDataResult.fold((failure) {
+    weatherDataResult.fold((failure) {
       snackBarStatus.postError(failure.toString());
-    }, (mapLocationData) async {
+    }, (mapLocationData) {
       _mapLocationData = mapLocationData;
-      notifyListeners();
     });
+  }
+
+  Future<void> getWeather5DaysForecast(LatLng currentLocation) async {
+    final weatherForecastResult =
+        await _getWeather5DaysForecastUseCase(currentLocation);
+
+    weatherForecastResult.fold((failure) {
+      snackBarStatus.postError(failure.toString());
+    }, (weatherForecast) {
+      _weatherForecast = weatherForecast;
+    });
+  }
+
+  Future<void> fetchMapLocationData(LatLng selectedLocation) async {
+    await Future.wait([
+      updateMapLocationData(selectedLocation),
+      getWeather5DaysForecast(selectedLocation),
+    ]);
+
+    notifyListeners();
   }
 }

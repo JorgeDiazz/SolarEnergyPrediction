@@ -4,5 +4,6 @@ class NetworkConstants {
 
   // endpoints
   static const currentWeatherDataEndpoint = '/data/2.5/weather';
+  static const weather5DaysForecastEndpoint = '/data/2.5/forecast';
   static const weatherIconEndpoint = '/img/w';
 }

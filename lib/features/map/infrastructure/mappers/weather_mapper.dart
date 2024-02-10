@@ -4,6 +4,8 @@ import 'package:solar_energy_prediction/features/map/domain/entities/map_locatio
 import 'package:solar_energy_prediction/features/map/domain/entities/temperature.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
+import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
+import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_5_days_forecast_response.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_data_response.dart';
 
 extension WeatherDataExtension on WeatherDataResponse {
@@ -14,6 +16,7 @@ extension WeatherDataExtension on WeatherDataResponse {
           coordinates: LatLng(coord?.lat ?? 0, coord?.lon ?? 0),
         ),
         weather: Weather(
+          timestamp: dt ?? 0,
           temperature: Temperature(
             average: main?.temp ?? 0,
             max: main?.tempMax ?? 0,
@@ -24,4 +27,31 @@ extension WeatherDataExtension on WeatherDataResponse {
               '${NetworkConstants.baseUrl}${NetworkConstants.weatherIconEndpoint}/${weather?.first.icon}.png',
         ),
       );
+}
+
+extension WeatherForecastExtension on Weather5DaysForecastResponse {
+  WeatherForecast toEntity() => WeatherForecast(
+        mapLocation: MapLocation(
+          country: city?.country ?? '',
+          city: city?.name ?? '',
+          coordinates: LatLng(city?.coord?.lat ?? 0, city?.coord?.lon ?? 0),
+        ),
+        weatherList: list?.toEntity() ?? [],
+      );
+}
+
+extension ForecastListExtension on List<ForecastResponse> {
+  List<Weather> toEntity() => map(
+        (forecast) => Weather(
+          timestamp: forecast.dt ?? 0,
+          temperature: Temperature(
+            average: forecast.main?.temp ?? 0,
+            max: forecast.main?.tempMax ?? 0,
+            min: forecast.main?.tempMin ?? 0,
+          ),
+          description: forecast.weather?.first.description ?? '',
+          iconUrl:
+              '${NetworkConstants.baseUrl}${NetworkConstants.weatherIconEndpoint}/${forecast.weather?.first.icon}.png',
+        ),
+      ).toList();
 }

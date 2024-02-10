@@ -100,16 +100,6 @@ class S {
     );
   }
 
-  /// `°C`
-  String get celsius_symbol {
-    return Intl.message(
-      '°C',
-      name: 'celsius_symbol',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Max:`
   String get max_temperature_subtitle {
     return Intl.message(
@@ -125,6 +115,16 @@ class S {
     return Intl.message(
       'Min:',
       name: 'min_temperature_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `5-DAY FORECAST`
+  String get weather_5_days_forecast_title {
+    return Intl.message(
+      '5-DAY FORECAST',
+      name: 'weather_5_days_forecast_title',
       desc: '',
       args: [],
     );

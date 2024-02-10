@@ -7,11 +7,13 @@ import 'package:solar_energy_prediction/core/constants/network_constants.dart';
 import 'package:solar_energy_prediction/core/constants/weather_constants.dart';
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
+import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/gps_services/gps_services_repository.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/map/weather_repository.dart';
 import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/is_gps_service_enabled_use_case.dart';
 import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/request_gps_service_use_case.dart';
-import 'package:solar_energy_prediction/features/map/domain/use_cases/map/get_weather_data_use_case.dart';
+import 'package:solar_energy_prediction/features/map/domain/use_cases/weather/get_weather_5_days_forecast_use_case.dart';
+import 'package:solar_energy_prediction/features/map/domain/use_cases/weather/get_weather_data_use_case.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/datasources/weather_datasource.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/datasources/weather_datasource_impl.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/repositories/gps_services/gps_services_repository_impl.dart';
@@ -72,6 +74,11 @@ Future<void> _initDependencies() async {
     )
     ..registerLazySingleton<FutureUseCase<WeatherData, LatLng>>(
       () => GetWeatherDataUseCase(
+        serviceLocator<WeatherRepository>(),
+      ),
+    )
+    ..registerLazySingleton<FutureUseCase<WeatherForecast, LatLng>>(
+      () => GetWeather5DaysForecastUseCase(
         serviceLocator<WeatherRepository>(),
       ),
     );

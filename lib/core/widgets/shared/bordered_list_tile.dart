@@ -12,6 +12,7 @@ class BorderedListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Divider(height: 0),
         ListTile(
           title: text,
         ),

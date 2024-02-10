@@ -6,6 +6,7 @@ import 'package:solar_energy_prediction/core/service_locator/service_locator.dar
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/widgets/overlays/snackbar_overlay.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
+import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/is_gps_service_enabled_use_case.dart';
 import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/request_gps_service_use_case.dart';
 import 'package:solar_energy_prediction/features/map/presentation/view_models/gps_services/request_gps_services_view_model.dart';
@@ -58,7 +59,9 @@ class HomeScreen extends StatelessWidget {
 
   MapViewModel _createMapViewModel() => MapViewModel(
         location: serviceLocator<Location>(),
-        getMapLocationDataUseCase:
+        getWeatherDataUseCase:
             serviceLocator<FutureUseCase<WeatherData, LatLng>>(),
+        getWeather5DaysForecastUseCase:
+            serviceLocator<FutureUseCase<WeatherForecast, LatLng>>(),
       );
 }

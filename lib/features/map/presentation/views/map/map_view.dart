@@ -49,7 +49,8 @@ class MapView extends StatelessWidget {
         WeatherDataBottomSheet(
           bottomSheetKey: bottomSheetKey,
           controller: bottomSheetController,
-          weatherData: viewModel.mapLocationData,
+          mapLocationData: viewModel.mapLocationData,
+          weatherForecast: viewModel.weatherForecast,
         ),
       ],
     );
@@ -58,7 +59,7 @@ class MapView extends StatelessWidget {
 
 class _GoogleMap extends StatelessWidget {
   static const selectedLocationMarkerId = MarkerId('selectedLocation');
-  static const defaultCenterOffset = 0.001;
+  static const defaultCenterOffset = 0.002;
 
   final CameraPosition initialCameraPosition;
   final GlobalKey<State<StatefulWidget>> bottomSheetKey;
@@ -118,7 +119,7 @@ class _GoogleMap extends StatelessWidget {
     );
 
     viewModel.locatePointOnMap(newLocationOnMap);
-    viewModel.updateMapLocationData(selectedLocation);
+    viewModel.fetchMapLocationData(selectedLocation);
 
     _showBottomSheet();
   }
