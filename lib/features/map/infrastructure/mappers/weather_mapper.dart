@@ -1,4 +1,5 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:solar_energy_prediction/core/constants/network_constants.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/map_location.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/temperature.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather.dart';
@@ -19,6 +20,8 @@ extension WeatherDataExtension on WeatherDataResponse {
             min: main?.tempMin ?? 0,
           ),
           description: weather?.first.description ?? '',
+          iconUrl:
+              '${NetworkConstants.baseUrl}${NetworkConstants.weatherIconEndpoint}/${weather?.first.icon}.png',
         ),
       );
 }

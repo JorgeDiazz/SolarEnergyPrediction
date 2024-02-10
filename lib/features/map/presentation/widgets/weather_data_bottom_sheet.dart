@@ -68,9 +68,7 @@ class _SolarIrradiationBottomSheetContent extends StatelessWidget {
           controller: scrollController,
           slivers: [
             _buildHorizontalSliverLine(),
-            weatherData == null
-                ? _buildLoadingIndicator()
-                : _buildBodyListContent(context),
+            weatherData == null ? _buildLoadingIndicator() : _buildBodyListContent(context),
           ],
         ),
       ),
@@ -115,32 +113,42 @@ class _SolarIrradiationBottomSheetContent extends StatelessWidget {
     final weatherDescription = weatherData?.weather.description ?? '';
     final latitude = weatherData?.mapLocation.coordinates.latitude ?? 0;
     final longitude = weatherData?.mapLocation.coordinates.longitude ?? 0;
+    final weatherIconUrl = weatherData?.weather.iconUrl ?? '';
 
     return SliverList.list(
       children: [
         Column(
           children: [
-            Text(
-              '$country, $city',
-              style: textTheme.titleLarge,
-            ),
+            if (country.isNotEmpty && city.isNotEmpty)
+              Text(
+                '$country, $city',
+                style: textTheme.titleLarge,
+              ),
             Text(
               '${averageTemperature.toString()}${S.of(context).celsius_symbol}',
               style: textTheme.titleLarge?.copyWith(fontSize: 35),
             ),
-            Text(
-              weatherDescription,
-              style: textTheme.bodyLarge,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: Image.network(weatherIconUrl, width: 40),
+                ),
+                Text(
+                  weatherDescription,
+                  style: textTheme.bodyLarge,
+                ),
+              ],
             ),
             BorderedListTile(
               text: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildTemperatureRow(context,
-                      S.of(context).max_temperature_subtitle, maxTemperature),
+                  _buildTemperatureRow(context, S.of(context).max_temperature_subtitle, maxTemperature),
                   const SizedBox(width: 15),
-                  _buildTemperatureRow(context,
-                      S.of(context).min_temperature_subtitle, minTemperature),
+                  _buildTemperatureRow(context, S.of(context).min_temperature_subtitle, minTemperature),
                 ],
               ),
             ),
@@ -155,8 +163,7 @@ class _SolarIrradiationBottomSheetContent extends StatelessWidget {
     );
   }
 
-  Row _buildTemperatureRow(
-      BuildContext context, String subtitle, double temperature) {
+  Row _buildTemperatureRow(BuildContext context, String subtitle, double temperature) {
     final textTheme = Theme.of(context).textTheme;
 
     return Row(
@@ -173,8 +180,7 @@ class _SolarIrradiationBottomSheetContent extends StatelessWidget {
     );
   }
 
-  Row _buildCoordinatesRow(
-      BuildContext context, double latitude, double longitude) {
+  Row _buildCoordinatesRow(BuildContext context, double latitude, double longitude) {
     final textTheme = Theme.of(context).textTheme;
 
     return Row(
