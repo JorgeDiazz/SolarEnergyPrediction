@@ -100,11 +100,31 @@ class S {
     );
   }
 
-  /// `Location selected`
-  String get location_selected_title {
+  /// `°C`
+  String get celsius_symbol {
     return Intl.message(
-      'Location selected',
-      name: 'location_selected_title',
+      '°C',
+      name: 'celsius_symbol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max:`
+  String get max_temperature_subtitle {
+    return Intl.message(
+      'Max:',
+      name: 'max_temperature_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Min:`
+  String get min_temperature_subtitle {
+    return Intl.message(
+      'Min:',
+      name: 'min_temperature_subtitle',
       desc: '',
       args: [],
     );

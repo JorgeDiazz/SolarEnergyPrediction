@@ -1,8 +1,7 @@
 class NetworkConstants {
   // api
-  static const baseUrl = 'https://pro.openweathermap.org';
+  static const baseUrl = 'https://api.openweathermap.org';
 
   // endpoints
-  static const solarEnergyPredictionEndpoint = '/energy/1.0/solar/data';
-  static const forecast30Endpoint = '/data/2.5/forecast/climate';
+  static const currentWeatherDataEndpoint = '/data/2.5/weather';
 }

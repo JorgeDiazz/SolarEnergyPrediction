@@ -7,5 +7,7 @@
   "locating_user_on_map_text": "Locating user on map...",
   "user_location_is_unknown_text": "User location is unknown!",
 
-  "location_selected_title": "Location selected"
+  "celsius_symbol": "°C",
+  "max_temperature_subtitle": "Max:",
+  "min_temperature_subtitle": "Min:"
 }

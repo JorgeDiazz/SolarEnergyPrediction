@@ -27,10 +27,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_requires_location_services_and_permission_title":
             MessageLookupByLibrary.simpleMessage(
                 "This app requires GPS enabled and location permission granted"),
+        "celsius_symbol": MessageLookupByLibrary.simpleMessage("°C"),
         "locating_user_on_map_text":
             MessageLookupByLibrary.simpleMessage("Locating user on map..."),
-        "location_selected_title":
-            MessageLookupByLibrary.simpleMessage("Location selected"),
+        "max_temperature_subtitle":
+            MessageLookupByLibrary.simpleMessage("Max:"),
+        "min_temperature_subtitle":
+            MessageLookupByLibrary.simpleMessage("Min:"),
         "request_gps_services_button":
             MessageLookupByLibrary.simpleMessage("Request GPS services"),
         "user_location_is_unknown_text":
