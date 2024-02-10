@@ -2,12 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:location/location.dart';
 import 'package:solar_energy_prediction/core/errors/failures.dart';
 import 'package:solar_energy_prediction/core/utils/typedefs.dart';
-import 'package:solar_energy_prediction/features/map/domain/repositories/location_repository.dart';
+import 'package:solar_energy_prediction/features/map/domain/repositories/gps_services/gps_services_repository.dart';
 
-class LocationRepositoryImpl implements LocationRepository {
+class GpsServicesRepositoryImpl implements GpsServicesRepository {
   final Location location;
 
-  LocationRepositoryImpl({required this.location});
+  GpsServicesRepositoryImpl({required this.location});
 
   @override
   ResultFuture<bool> isGpsServiceEnabled() async {
@@ -16,7 +16,8 @@ class LocationRepositoryImpl implements LocationRepository {
       return Right(gpsServiceEnabled);
     } catch (e) {
       return Left(ServicesFailure(
-          message: 'Error when checking if GPS service is enabled'));
+          message:
+              'Error when checking if GPS service is enabled. Exception: $e'));
     }
   }
 
@@ -26,8 +27,8 @@ class LocationRepositoryImpl implements LocationRepository {
       final gpsServiceEnabled = await location.requestService();
       return Right(gpsServiceEnabled);
     } catch (e) {
-      return Left(
-          ServicesFailure(message: 'Error when requesting GPS service'));
+      return Left(ServicesFailure(
+          message: 'Error when requesting GPS service. Exception: $e'));
     }
   }
 }

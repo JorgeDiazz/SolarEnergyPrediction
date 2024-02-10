@@ -29,6 +29,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "This app requires GPS enabled and location permission granted"),
         "locating_user_on_map_text":
             MessageLookupByLibrary.simpleMessage("Locating user on map..."),
+        "location_selected_title":
+            MessageLookupByLibrary.simpleMessage("Location selected"),
         "request_gps_services_button":
             MessageLookupByLibrary.simpleMessage("Request GPS services"),
         "user_location_is_unknown_text":

@@ -99,6 +99,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Location selected`
+  String get location_selected_title {
+    return Intl.message(
+      'Location selected',
+      name: 'location_selected_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

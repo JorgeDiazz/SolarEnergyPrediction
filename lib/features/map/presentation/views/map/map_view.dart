@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:solar_energy_prediction/core/extensions/location_extensions.dart';
 import 'package:solar_energy_prediction/features/map/presentation/view_models/map/map_view_model.dart';
 import 'package:solar_energy_prediction/features/map/presentation/widgets/current_location_button.dart';
-import 'package:solar_energy_prediction/features/map/presentation/widgets/draggable_bottom_sheet.dart';
+import 'package:solar_energy_prediction/features/map/presentation/widgets/solar_irradiation_bottom_sheet.dart';
 
 class MapView extends StatelessWidget {
   static const defaultZoom = 15.0;
@@ -22,6 +22,8 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<MapViewModel>();
+
     final CameraPosition initialCameraPosition = CameraPosition(
       target: initialLocation,
       zoom: defaultZoom,
@@ -35,7 +37,7 @@ class MapView extends StatelessWidget {
           bottomSheetController: bottomSheetController,
         ),
         Positioned(
-          bottom: 80,
+          bottom: 120,
           right: 20,
           child: CurrentLocationButton(
             onPressed: () {
@@ -44,9 +46,10 @@ class MapView extends StatelessWidget {
             },
           ),
         ),
-        DraggableBottomSheet(
+        SolarIrradiationBottomSheet(
           bottomSheetKey: bottomSheetKey,
           controller: bottomSheetController,
+          mapLocationData: viewModel.mapLocationData,
         ),
       ],
     );
@@ -104,7 +107,9 @@ class _GoogleMap extends StatelessWidget {
   }
 
   void _updateSelectedLocation(
-      LatLng selectedLocation, MapViewModel viewModel) {
+    LatLng selectedLocation,
+    MapViewModel viewModel,
+  ) {
     viewModel.updateSelectedLocation(selectedLocation);
 
     final newLocationOnMap = LatLng(
@@ -113,6 +118,7 @@ class _GoogleMap extends StatelessWidget {
     );
 
     viewModel.locatePointOnMap(newLocationOnMap);
+    viewModel.updateMapLocationData(selectedLocation);
 
     _showBottomSheet();
   }

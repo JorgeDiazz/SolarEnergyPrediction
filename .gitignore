@@ -45,3 +45,6 @@ app.*.map.json
 
 # Golden tests
 **/failures/*.png
+
+# Env variables
+.env

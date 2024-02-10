@@ -1,15 +1,18 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:solar_energy_prediction/core/service_locator/service_locator.dart';
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/widgets/overlays/snackbar_overlay.dart';
-import 'package:solar_energy_prediction/features/map/domain/use_cases/is_gps_service_enabled_use_case.dart';
-import 'package:solar_energy_prediction/features/map/domain/use_cases/request_gps_service_use_case.dart';
-import 'package:solar_energy_prediction/features/map/presentation/view_models/map/map_view_model.dart';
+import 'package:solar_energy_prediction/features/map/domain/entities/map_location.dart';
+import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/is_gps_service_enabled_use_case.dart';
+import 'package:solar_energy_prediction/features/map/domain/use_cases/gps_services/request_gps_service_use_case.dart';
 import 'package:solar_energy_prediction/features/map/presentation/view_models/gps_services/request_gps_services_view_model.dart';
-import 'package:solar_energy_prediction/features/map/presentation/views/map/map_container_view.dart';
+import 'package:solar_energy_prediction/features/map/presentation/view_models/map/map_view_model.dart';
 import 'package:solar_energy_prediction/features/map/presentation/views/gps_services/request_gps_services_view.dart';
+import 'package:solar_energy_prediction/features/map/presentation/views/map/map_container_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -56,5 +59,7 @@ class HomeScreen extends StatelessWidget {
 
   MapViewModel _createMapViewModel() => MapViewModel(
         location: serviceLocator<Location>(),
+        getMapLocationDataUseCase: serviceLocator<
+            FutureUseCase<MapLocationData, Tuple2<LatLng, DateTime>>>(),
       );
 }
