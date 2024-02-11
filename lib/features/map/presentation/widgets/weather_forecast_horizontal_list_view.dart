@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:solar_energy_prediction/core/config/l10n/l10n.dart';
 import 'package:solar_energy_prediction/core/constants/date_extensions.dart';
@@ -7,8 +8,7 @@ import 'package:solar_energy_prediction/features/map/domain/entities/weather.dar
 class WeatherForecastHorizontalListView extends StatelessWidget {
   final List<Weather> weatherForecastList;
 
-  const WeatherForecastHorizontalListView(
-      {super.key, required this.weatherForecastList});
+  const WeatherForecastHorizontalListView({super.key, required this.weatherForecastList});
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +57,9 @@ class WeatherForecastHorizontalListView extends StatelessWidget {
                           item.timestamp.getTime(),
                           style: textTheme.bodySmall,
                         ),
-                        Image.network(item.iconUrl),
+                        FadeIn(child: Image.network(item.iconUrl)),
                         Text(
-                          item.temperature.average
-                              .toString()
-                              .addCelsiusSymbol(),
+                          item.temperature.average.toString().addCelsiusSymbol(),
                           style: textTheme.titleSmall,
                         ),
                       ],
