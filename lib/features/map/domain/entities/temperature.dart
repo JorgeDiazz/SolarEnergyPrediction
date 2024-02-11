@@ -1,7 +1,7 @@
 class Temperature {
-  final double average;
-  final double max;
-  final double min;
+  final int average;
+  final int max;
+  final int min;
 
   Temperature({
     required this.average,

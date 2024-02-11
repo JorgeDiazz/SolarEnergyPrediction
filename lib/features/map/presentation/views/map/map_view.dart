@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:solar_energy_prediction/core/extensions/location_extensions.dart';
+import 'package:solar_energy_prediction/core/utils/ui_utils.dart';
 import 'package:solar_energy_prediction/features/map/presentation/view_models/map/map_view_model.dart';
 import 'package:solar_energy_prediction/features/map/presentation/widgets/current_location_button.dart';
 import 'package:solar_energy_prediction/features/map/presentation/widgets/weather_data_bottom_sheet.dart';
@@ -37,7 +38,7 @@ class MapView extends StatelessWidget {
           bottomSheetController: bottomSheetController,
         ),
         Positioned(
-          bottom: 150,
+          bottom: UiUtils.isPortrait(context) ? 150 : 50,
           right: 20,
           child: CurrentLocationButton(
             onPressed: () {

@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Solar Energy Prediction`
+  /// `Weather Data`
   String get app_name {
     return Intl.message(
-      'Solar Energy Prediction',
+      'Weather Data',
       name: 'app_name',
       desc: '',
       args: [],

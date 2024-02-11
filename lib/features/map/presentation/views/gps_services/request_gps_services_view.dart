@@ -9,14 +9,22 @@ class RequestGpsServicesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colors = Theme.of(context).colorScheme;
 
     return Container(
-      color: Colors.grey,
+      color: colors.background,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              S.of(context).app_name,
+              style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
             Text(
               S.of(context).app_requires_location_services_and_permission_title,
               style: textTheme.titleMedium,
@@ -40,8 +48,10 @@ class _RequestGpsServicesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return MaterialButton(
-      color: Colors.black,
+      color: colors.primary,
       shape: const StadiumBorder(),
       elevation: 0,
       splashColor: Colors.transparent,

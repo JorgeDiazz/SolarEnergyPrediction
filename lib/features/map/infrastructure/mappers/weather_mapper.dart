@@ -18,9 +18,9 @@ extension WeatherDataExtension on WeatherDataResponse {
         weather: Weather(
           timestamp: dt ?? 0,
           temperature: Temperature(
-            average: main?.temp ?? 0,
-            max: main?.tempMax ?? 0,
-            min: main?.tempMin ?? 0,
+            average: main?.temp?.round() ?? 0,
+            max: main?.tempMax?.round() ?? 0,
+            min: main?.tempMin?.round() ?? 0,
           ),
           description: weather?.first.description ?? '',
           iconUrl:
@@ -45,9 +45,9 @@ extension ForecastListExtension on List<ForecastResponse> {
         (forecast) => Weather(
           timestamp: forecast.dt ?? 0,
           temperature: Temperature(
-            average: forecast.main?.temp ?? 0,
-            max: forecast.main?.tempMax ?? 0,
-            min: forecast.main?.tempMin ?? 0,
+            average: forecast.main?.temp?.round() ?? 0,
+            max: forecast.main?.tempMax?.round() ?? 0,
+            min: forecast.main?.tempMin?.round() ?? 0,
           ),
           description: forecast.weather?.first.description ?? '',
           iconUrl:

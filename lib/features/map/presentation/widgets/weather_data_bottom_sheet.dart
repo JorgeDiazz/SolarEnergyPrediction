@@ -176,7 +176,7 @@ class _SolarIrradiationBottomSheetContent extends StatelessWidget {
   }
 
   Row _buildTemperatureRow(
-      BuildContext context, String subtitle, double temperature) {
+      BuildContext context, String subtitle, int temperature) {
     final textTheme = Theme.of(context).textTheme;
 
     return Row(
