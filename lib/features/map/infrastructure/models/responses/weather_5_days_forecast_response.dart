@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_5_days_forecast_response.g.dart';
 
+/// Represents the response for Weather5DaysForecast endpoint
 @JsonSerializable()
 class Weather5DaysForecastResponse {
   @JsonKey(name: "cod")

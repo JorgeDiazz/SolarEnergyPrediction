@@ -8,6 +8,7 @@ import 'package:solar_energy_prediction/features/map/domain/entities/weather_for
 import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_5_days_forecast_response.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_data_response.dart';
 
+/// Mapper from WeatherDataResponse (data layer) to WeatherData (domain layer)
 extension WeatherDataExtension on WeatherDataResponse {
   WeatherData toEntity() => WeatherData(
         mapLocation: MapLocation(
@@ -29,6 +30,7 @@ extension WeatherDataExtension on WeatherDataResponse {
       );
 }
 
+/// Mapper from Weather5DaysForecastResponse (data layer) to WeatherForecast (domain layer)
 extension WeatherForecastExtension on Weather5DaysForecastResponse {
   WeatherForecast toEntity() => WeatherForecast(
         mapLocation: MapLocation(
@@ -40,6 +42,7 @@ extension WeatherForecastExtension on Weather5DaysForecastResponse {
       );
 }
 
+/// Mapper from List<ForecastResponse> (data layer) to List<Weather> (domain layer)
 extension ForecastListExtension on List<ForecastResponse> {
   List<Weather> toEntity() => map(
         (forecast) => Weather(

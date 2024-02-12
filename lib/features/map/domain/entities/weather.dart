@@ -1,5 +1,6 @@
 import 'package:solar_energy_prediction/features/map/domain/entities/temperature.dart';
 
+/// Represents the weather for a selected location on the map
 class Weather {
   final int timestamp;
   final Temperature temperature;

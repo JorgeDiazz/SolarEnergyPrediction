@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Represents the button displayed on the map to navigate to user's current location
 class CurrentLocationButton extends StatelessWidget {
   final VoidCallback onPressed;
 

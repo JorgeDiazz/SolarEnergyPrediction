@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_data_response.g.dart';
 
+/// Represents the response for current WeatherData endpoint
 @JsonSerializable()
 class WeatherDataResponse {
   @JsonKey(name: "coord")

@@ -4,6 +4,7 @@ import 'package:solar_energy_prediction/core/utils/typedefs.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/map/weather_repository.dart';
 
+/// Gets weather forecast of the next 5 days
 class GetWeather5DaysForecastUseCase
     extends FutureUseCase<WeatherForecast, LatLng> {
   final WeatherRepository _repository;

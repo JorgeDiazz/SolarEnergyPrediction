@@ -9,6 +9,7 @@ import 'package:solar_energy_prediction/features/map/infrastructure/datasources/
 import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_5_days_forecast_response.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/models/responses/weather_data_response.dart';
 
+/// Contains the implementation of the Weather datasource
 class WeatherDatasourceImpl implements WeatherDatasource {
   final Dio _dio;
 

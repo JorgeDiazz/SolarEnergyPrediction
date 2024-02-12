@@ -5,6 +5,7 @@ import 'package:solar_energy_prediction/core/constants/date_extensions.dart';
 import 'package:solar_energy_prediction/core/extensions/string_extensions.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather.dart';
 
+/// Represents the horizontal list in which 5-days forecast data is displayed for a selected location on the map
 class WeatherForecastHorizontalListView extends StatelessWidget {
   final List<Weather> weatherForecastList;
 

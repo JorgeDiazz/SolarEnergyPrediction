@@ -14,6 +14,7 @@ import 'package:solar_energy_prediction/features/map/presentation/view_models/ma
 import 'package:solar_energy_prediction/features/map/presentation/views/gps_services/request_gps_services_view.dart';
 import 'package:solar_energy_prediction/features/map/presentation/views/map/map_container_view.dart';
 
+/// Serves as the main screen that encapsulates map feature and location permissions request
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -24,7 +25,8 @@ class HomeScreen extends StatelessWidget {
         child: MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (_) => _createRequestGpsServicesViewModel()..checkGpsStatus(),
+              create: (_) =>
+                  _createRequestGpsServicesViewModel()..checkGpsStatus(),
             ),
             ChangeNotifierProvider(
               create: (_) => _createMapViewModel()..updateLastKnownLocation(),
@@ -49,7 +51,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  RequestGpsServicesViewModel _createRequestGpsServicesViewModel() => RequestGpsServicesViewModel(
+  RequestGpsServicesViewModel _createRequestGpsServicesViewModel() =>
+      RequestGpsServicesViewModel(
         location: serviceLocator<Location>(),
         isGpsServiceEnabledUseCase: serviceLocator<FutureUseCase<bool, void>>(
           instanceName: '$IsGpsServiceEnabledUseCase',
@@ -61,7 +64,9 @@ class HomeScreen extends StatelessWidget {
 
   MapViewModel _createMapViewModel() => MapViewModel(
         location: serviceLocator<Location>(),
-        getWeatherDataUseCase: serviceLocator<FutureUseCase<WeatherData, LatLng>>(),
-        getWeather5DaysForecastUseCase: serviceLocator<FutureUseCase<WeatherForecast, LatLng>>(),
+        getWeatherDataUseCase:
+            serviceLocator<FutureUseCase<WeatherData, LatLng>>(),
+        getWeather5DaysForecastUseCase:
+            serviceLocator<FutureUseCase<WeatherForecast, LatLng>>(),
       );
 }

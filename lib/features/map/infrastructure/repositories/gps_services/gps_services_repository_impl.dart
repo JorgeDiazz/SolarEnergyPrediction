@@ -4,6 +4,9 @@ import 'package:solar_energy_prediction/core/errors/failures.dart';
 import 'package:solar_energy_prediction/core/utils/typedefs.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/gps_services/gps_services_repository.dart';
 
+/// Represents the implementation of GpsServicesRepository
+/// Right wrapper means expected response
+// Left wrapper means an exception occurred
 class GpsServicesRepositoryImpl implements GpsServicesRepository {
   final Location location;
 

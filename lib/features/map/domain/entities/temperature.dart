@@ -1,3 +1,4 @@
+/// Represents the temperature for a selected location on the map
 class Temperature {
   final int average;
   final int max;

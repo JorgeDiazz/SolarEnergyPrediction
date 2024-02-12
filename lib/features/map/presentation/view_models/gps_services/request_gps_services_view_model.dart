@@ -5,6 +5,8 @@ import 'package:solar_energy_prediction/core/notifier_helpers/snackbar_status_no
 import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/utils/permissions_manager.dart';
 
+/// Represents the view model for map view.
+/// This class contains all the UI states for RequestGpsServicesView.
 class RequestGpsServicesViewModel extends ChangeNotifier
     with SnackbarStatusMixin {
   final Location _location;
@@ -25,6 +27,7 @@ class RequestGpsServicesViewModel extends ChangeNotifier
         _isGpsServiceEnabledUseCase = isGpsServiceEnabledUseCase,
         _requestGpsServiceUseCase = requestGpsServiceUseCase;
 
+  /// Checks if GPS sensor is whether enabled or not
   Future<void> checkGpsStatus() async {
     final isGpsServiceEnabledResult = await _isGpsServiceEnabledUseCase(null);
 
@@ -35,6 +38,7 @@ class RequestGpsServicesViewModel extends ChangeNotifier
     });
   }
 
+  /// Requests GPS sensor to the user
   Future<void> _requestGpsService(bool gpsServiceEnabled) async {
     if (!gpsServiceEnabled) {
       final requestGpsServiceResult = await _requestGpsServiceUseCase(null);
@@ -47,6 +51,7 @@ class RequestGpsServicesViewModel extends ChangeNotifier
       }
     }
 
+    /// Requests in-app location permission to the user
     final locationPermissionGranted =
         await PermissionsManager.requestLocationPermission(_location);
     _gpsServiceEnabledAndGranted =

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_energy_prediction/core/config/l10n/l10n.dart';
 
+/// Contains a progress indicator to indicate the app is getting user's current location
 class FetchingCurrentLocationView extends StatelessWidget {
   const FetchingCurrentLocationView({super.key});
 

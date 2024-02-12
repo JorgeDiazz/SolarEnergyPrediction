@@ -6,6 +6,7 @@ import 'package:solar_energy_prediction/features/map/domain/entities/weather_dat
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 import 'package:solar_energy_prediction/features/map/presentation/widgets/weather_forecast_horizontal_list_view.dart';
 
+/// Represents the bottom sheet in which weather data and 5-days forecast is displayed
 class WeatherDataBottomSheet extends StatelessWidget {
   final DraggableScrollableController controller;
   final GlobalKey bottomSheetKey;
@@ -49,6 +50,7 @@ class WeatherDataBottomSheet extends StatelessWidget {
   }
 }
 
+/// Represents the content of the bottom sheet
 class _SolarIrradiationBottomSheetContent extends StatelessWidget {
   final ScrollController scrollController;
   final WeatherData? mapLocationData;

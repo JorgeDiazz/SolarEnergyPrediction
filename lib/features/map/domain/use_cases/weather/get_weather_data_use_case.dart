@@ -4,6 +4,7 @@ import 'package:solar_energy_prediction/core/utils/typedefs.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/map/weather_repository.dart';
 
+/// Gets current weather data
 class GetWeatherDataUseCase extends FutureUseCase<WeatherData, LatLng> {
   final WeatherRepository _repository;
 

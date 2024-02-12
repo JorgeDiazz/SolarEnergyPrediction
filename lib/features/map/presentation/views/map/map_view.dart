@@ -8,6 +8,9 @@ import 'package:solar_energy_prediction/features/map/presentation/view_models/ma
 import 'package:solar_energy_prediction/features/map/presentation/widgets/current_location_button.dart';
 import 'package:solar_energy_prediction/features/map/presentation/widgets/weather_data_bottom_sheet.dart';
 
+/// Serves as the container for Google Maps widget.
+/// It's the main view of the application, in which the user can explore new places, select them and
+/// know their current weather and next 5-day forecast
 class MapView extends StatelessWidget {
   static const defaultZoom = 15.0;
 
@@ -61,6 +64,7 @@ class MapView extends StatelessWidget {
   }
 }
 
+/// Encapsulates the GoogleMap widget and its behavior
 class _GoogleMap extends StatelessWidget {
   static const selectedLocationMarkerId = MarkerId('selectedLocation');
   static const defaultCenterOffset = 0.002;

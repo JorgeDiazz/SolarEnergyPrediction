@@ -6,6 +6,10 @@ import 'package:solar_energy_prediction/features/map/presentation/view_models/ma
 import 'package:solar_energy_prediction/features/map/presentation/views/map/fetching_current_location_view.dart';
 import 'package:solar_energy_prediction/features/map/presentation/views/map/map_view.dart';
 
+/// Decides between FetchingCurrentLocationView and MapView depending on user's last known location
+/// i.e. if lastKnownLocation is default point (0, 0), so it means that app is fetching current location and
+/// FetchingCurrentLocationView must be displayed
+/// Otherwise, if lastKnownLocation has another value, so MapView is rendered
 class MapContainerView extends StatefulWidget {
   const MapContainerView({super.key});
 

@@ -9,6 +9,9 @@ import 'package:solar_energy_prediction/features/map/domain/repositories/map/wea
 import 'package:solar_energy_prediction/features/map/infrastructure/datasources/weather_datasource.dart';
 import 'package:solar_energy_prediction/features/map/infrastructure/mappers/weather_mapper.dart';
 
+/// Represents the implementation of WeatherRepository
+/// Right wrapper means expected response
+/// Left wrapper means an exception occurred
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherDatasource remoteDatasource;
 

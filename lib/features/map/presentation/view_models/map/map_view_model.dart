@@ -11,29 +11,25 @@ import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_data.dart';
 import 'package:solar_energy_prediction/features/map/domain/entities/weather_forecast.dart';
 
+/// Represents the view model for map view.
+/// This class contains all the UI states for MapView.
 class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
   final Location _location;
-
   Location get location => _location;
 
   LatLng _lastKnownLocation;
-
   LatLng get lastKnownLocation => _lastKnownLocation;
 
   LatLng _selectedLocation;
-
   LatLng get selectedLocation => _selectedLocation;
 
   GoogleMapController? _mapController;
-
   GoogleMapController? get mapController => _mapController;
 
   WeatherData? _weatherData;
-
   WeatherData? get weatherData => _weatherData;
 
   WeatherForecast? _weatherForecast;
-
   WeatherForecast? get weatherForecast => _weatherForecast;
 
   final FutureUseCase<WeatherData, LatLng> _getWeatherDataUseCase;

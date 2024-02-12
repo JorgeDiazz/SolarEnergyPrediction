@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:solar_energy_prediction/core/config/l10n/l10n.dart';
 import 'package:solar_energy_prediction/features/map/presentation/view_models/gps_services/request_gps_services_view_model.dart';
 
+/// Displays a button to request GPS sensor enabled and location permission granted on-demand
 class RequestGpsServicesView extends StatelessWidget {
   const RequestGpsServicesView({super.key});
 
@@ -20,7 +21,8 @@ class RequestGpsServicesView extends StatelessWidget {
           children: [
             Text(
               S.of(context).app_name,
-              style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+              style: textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),

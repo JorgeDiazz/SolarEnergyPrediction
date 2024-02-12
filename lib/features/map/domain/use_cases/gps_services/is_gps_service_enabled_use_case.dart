@@ -2,6 +2,7 @@ import 'package:solar_energy_prediction/core/use_cases/use_cases.dart';
 import 'package:solar_energy_prediction/core/utils/typedefs.dart';
 import 'package:solar_energy_prediction/features/map/domain/repositories/gps_services/gps_services_repository.dart';
 
+/// Returns current gps service (sensor) status
 class IsGpsServiceEnabledUseCase extends FutureUseCase<bool, void> {
   final GpsServicesRepository _repository;
 
