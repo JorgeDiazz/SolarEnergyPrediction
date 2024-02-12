@@ -8,7 +8,8 @@ import 'package:solar_energy_prediction/features/map/domain/entities/weather.dar
 class WeatherForecastHorizontalListView extends StatelessWidget {
   final List<Weather> weatherForecastList;
 
-  const WeatherForecastHorizontalListView({super.key, required this.weatherForecastList});
+  const WeatherForecastHorizontalListView(
+      {super.key, required this.weatherForecastList});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,9 @@ class WeatherForecastHorizontalListView extends StatelessWidget {
                         ),
                         FadeIn(child: Image.network(item.iconUrl)),
                         Text(
-                          item.temperature.average.toString().addCelsiusSymbol(),
+                          item.temperature.average
+                              .toString()
+                              .addCelsiusSymbol(),
                           style: textTheme.titleSmall,
                         ),
                       ],

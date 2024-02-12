@@ -28,9 +28,9 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   GoogleMapController? get mapController => _mapController;
 
-  WeatherData? _mapLocationData;
+  WeatherData? _weatherData;
 
-  WeatherData? get mapLocationData => _mapLocationData;
+  WeatherData? get weatherData => _weatherData;
 
   WeatherForecast? _weatherForecast;
 
@@ -52,8 +52,12 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   Future<void> updateLastKnownLocation() async {
     final currentLocation = await location.getLocation();
-    _lastKnownLocation =
-        LatLng(currentLocation.latitude ?? 0, currentLocation.longitude ?? 0);
+
+    _lastKnownLocation = LatLng(
+      currentLocation.latitude ?? 0,
+      currentLocation.longitude ?? 0,
+    );
+
     notifyListeners();
   }
 
@@ -82,18 +86,18 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   void clearSelectedLocation() {
     _selectedLocation = const LatLng(0, 0);
-    _mapLocationData = null;
+    _weatherData = null;
     _weatherForecast = null;
     notifyListeners();
   }
 
-  Future<void> updateMapLocationData(LatLng currentLocation) async {
+  Future<void> getCurrentWeatherData(LatLng currentLocation) async {
     final weatherDataResult = await _getWeatherDataUseCase(currentLocation);
 
     weatherDataResult.fold((failure) {
       snackBarStatus.postError(failure.toString());
     }, (mapLocationData) {
-      _mapLocationData = mapLocationData;
+      _weatherData = mapLocationData;
     });
   }
 
@@ -110,7 +114,7 @@ class MapViewModel extends ChangeNotifier with SnackbarStatusMixin {
 
   Future<void> fetchMapLocationData(LatLng selectedLocation) async {
     await Future.wait([
-      updateMapLocationData(selectedLocation),
+      getCurrentWeatherData(selectedLocation),
       getWeather5DaysForecast(selectedLocation),
     ]);
 

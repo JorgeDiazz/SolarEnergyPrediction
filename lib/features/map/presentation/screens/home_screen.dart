@@ -24,8 +24,7 @@ class HomeScreen extends StatelessWidget {
         child: MultiProvider(
           providers: [
             ChangeNotifierProvider(
-              create: (_) =>
-                  _createRequestGpsServicesViewModel()..checkGpsStatus(),
+              create: (_) => _createRequestGpsServicesViewModel()..checkGpsStatus(),
             ),
             ChangeNotifierProvider(
               create: (_) => _createMapViewModel()..updateLastKnownLocation(),
@@ -37,7 +36,11 @@ class HomeScreen extends StatelessWidget {
                 snackBarStatus: requestGpsServicesViewModel.snackBarStatus,
                 child: requestGpsServicesViewModel.gpsServiceEnabledAndGranted
                     ? const MapContainerView()
-                    : const RequestGpsServicesView(),
+                    : const Center(
+                        child: SingleChildScrollView(
+                          child: RequestGpsServicesView(),
+                        ),
+                      ),
               );
             },
           ),
@@ -46,8 +49,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  RequestGpsServicesViewModel _createRequestGpsServicesViewModel() =>
-      RequestGpsServicesViewModel(
+  RequestGpsServicesViewModel _createRequestGpsServicesViewModel() => RequestGpsServicesViewModel(
         location: serviceLocator<Location>(),
         isGpsServiceEnabledUseCase: serviceLocator<FutureUseCase<bool, void>>(
           instanceName: '$IsGpsServiceEnabledUseCase',
@@ -59,9 +61,7 @@ class HomeScreen extends StatelessWidget {
 
   MapViewModel _createMapViewModel() => MapViewModel(
         location: serviceLocator<Location>(),
-        getWeatherDataUseCase:
-            serviceLocator<FutureUseCase<WeatherData, LatLng>>(),
-        getWeather5DaysForecastUseCase:
-            serviceLocator<FutureUseCase<WeatherForecast, LatLng>>(),
+        getWeatherDataUseCase: serviceLocator<FutureUseCase<WeatherData, LatLng>>(),
+        getWeather5DaysForecastUseCase: serviceLocator<FutureUseCase<WeatherForecast, LatLng>>(),
       );
 }

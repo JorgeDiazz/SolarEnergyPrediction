@@ -23,13 +23,8 @@ Welcome to Solar Energy Prediction, the Stori Mobile Take-Home test for Flutter 
 - **mockito**: to create mocks and define stubs in tests.
 - **provider**: for state management.
 
-3. This project contains unit tests, widget tests (both widget and golden tests), and integration tests.
+3. This project contains unit tests, widget tests, and golden tests.
 
---
-
-**Flutter version: 3.16.2**
-
---
 
 ### Project structure
 
@@ -98,11 +93,8 @@ flutter run -d [device_id]
 flutter test --update-goldens
 ```
 
-- To run integration tests
-```
-1. flutter devices
-2. flutter test integration_test/app_test.dart -d [device_id] 
-```
+<img src="docs/images/unit_tests.png"/>
+
 
 - To format the project source code:
 ```
@@ -110,3 +102,8 @@ flutter test --update-goldens
 2. dart format .
 ```
 
+--
+
+**Flutter version: 3.16.2**
+
+--

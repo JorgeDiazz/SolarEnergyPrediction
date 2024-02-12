@@ -20,8 +20,7 @@ class RequestGpsServicesView extends StatelessWidget {
           children: [
             Text(
               S.of(context).app_name,
-              style: textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+              style: textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
@@ -59,6 +58,7 @@ class _RequestGpsServicesButton extends StatelessWidget {
       child: Text(
         text,
         style: const TextStyle(color: Colors.white),
+        textAlign: TextAlign.center,
       ),
     );
   }
